@@ -1,67 +1,15 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.concurrent.ThreadLocalRandom;
+public interface Generation {
 
-/**
- * Classe représentant une génération.
- * Une génération est composée d'individus, d'un nb d'individus a sauvegarder pour la génération suivante,
- * une probabilité de mutation et d'un objectif.
- * 
- */
-public class Generation {
+	void initialiserGenerationZero();
 
-private final int nbIndividus;
- private final int nbIndividusNextGen; 
- private final int probaMutation;
- private final Objectif objectif;
- private final ArrayList<Individu> groupe;
- 
- /**
-  * Constructeur de la classe Generation.
-  * @Param nbIndividu nbIndividusNextGen probaMutation objectif.
-  */
- public Generation(int nbIndividus, int nbIndividusNextGen, int probaMutation, Objectif objectif) {
-     this.nbIndividus = nbIndividus; 
-     this.nbIndividusNextGen = nbIndividusNextGen;
-     this.objectif = objectif;
-     this.probaMutation = probaMutation;
-     this.groupe = new ArrayList<>(); 
-     }
-     
-     public void initialiserGenerationZero() {
-         for (int individu = 0; individu < nbIndividus; individu++) {
-             groupe.add(new Individu(objectif.getObjectif().length())); 
-             
-             groupe.get(individu).recupererGenome().genererGenomeAleatoire(); 
-             groupe.get(individu).mettreAjourScore(objectif.getObjectif()); 
-        } 
-    } 
-    
-    public void executerSelection() {
-        for (int individu = 0; individu < nbIndividus; individu++) {
-            groupe.get(individu).mettreAjourScore(objectif.getObjectif()); 
-        } Collections.sort(groupe); 
-    }
-    
-    public void executerCroisement() {
-        for (int individu = nbIndividusNextGen; individu < nbIndividus; individu++) {
-            groupe.get(individu).transformerEnEnfant( groupe.get(ThreadLocalRandom.current().nextInt(0, nbIndividusNextGen)).recupererGenome(), groupe.get(ThreadLocalRandom.current().nextInt(0, nbIndividusNextGen)).recupererGenome());
-        } 
-    } 
-    
-    public void executerMutation() {
-        for (int individu = 0; individu < nbIndividus; individu++) {
-            if (ThreadLocalRandom.current().nextInt(0, 1000) < probaMutation) {
-                groupe.get(individu).muter(); 
-            }
-        }
-    }
-    
-    public Individu recupererIndividu(int indice) {
-        return groupe.get(indice); 
-    }
+	void executerSelection();
 
+	void executerCroisement();
+
+	void executerMutation();
+
+	Individu recupererIndividu(int indice);
 
 }
