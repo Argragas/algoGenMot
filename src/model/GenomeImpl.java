@@ -2,6 +2,11 @@ package model;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Implémentation de l'interface {@link Genome}.
+ * @author Argragas
+ *
+ */
 public class GenomeImpl implements Genome {
     
     private final int tailleChaine; 
@@ -12,20 +17,12 @@ public class GenomeImpl implements Genome {
         this.chaine = new char[tailleChaine]; 
     } 
     
-    /* (non-Javadoc)
-	 * @see model.Genome#genererGenomeAleatoire()
-	 */
-    @Override
 	public void genererGenomeAleatoire() {
         for (int indice = 0; indice < tailleChaine; indice++) {
             chaine[indice] = (char) ThreadLocalRandom.current().nextInt(32, 256);
         }
     }
     
-    /* (non-Javadoc)
-	 * @see model.Genome#afficherGenome()
-	 */
-    @Override
 	public String afficherGenome() {
         StringBuffer sb = new StringBuffer();
         for (char c : chaine) {
@@ -34,26 +31,14 @@ public class GenomeImpl implements Genome {
         return sb.toString(); 
     }
     
-    /* (non-Javadoc)
-	 * @see model.Genome#modifierCaractere(int, int)
-	 */
-    @Override
 	public void modifierCaractere(int indice, int valeur) {
         chaine[indice] = (char) valeur;
     }
     
-    /* (non-Javadoc)
-	 * @see model.Genome#recupererCaractere(int)
-	 */
-    @Override
 	public int recupererCaractere(int indice) {
         return (int) chaine[indice]; 
     }
     
-    /* (non-Javadoc)
-	 * @see model.Genome#recupererTailleGenome()
-	 */
-    @Override
 	public int recupererTailleGenome() {
         return tailleChaine; 
     }

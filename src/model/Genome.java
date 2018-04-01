@@ -1,15 +1,41 @@
 package model;
 
+/**
+ * Représentation de la classe {@link Genome}.
+ * @author Argragas
+ *
+ */
 public interface Genome {
 
-	void genererGenomeAleatoire();
+	/**
+	 * Génère un génome de façon aléatoire.
+	 */
+	public void genererGenomeAleatoire();
 
-	String afficherGenome();
+	/**
+	 * Renvoi une représentation graphique du génome.
+	 * @return String {@link Genome}
+	 */
+	public String afficherGenome();
 
-	void modifierCaractere(int indice, int valeur);
+	/**
+	 * Modification d'un caractère du {@link Genome}.
+	 * @param indice
+	 * @param valeur
+	 */
+	public void modifierCaractere(int indice, int valeur);
 
-	int recupererCaractere(int indice);
+	/**
+	 * Renvoi le caractère à l'indice donné en paramètre.
+	 * @param indice
+	 * @return int caractère.
+	 */
+	public int recupererCaractere(int indice);
 
-	int recupererTailleGenome();
+	/**
+	 * Renvoi la taille du {@link Genome}.
+	 * @return int taille
+	 */
+	public int recupererTailleGenome();
 
 }

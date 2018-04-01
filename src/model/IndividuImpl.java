@@ -2,7 +2,12 @@ package model;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class IndividuImpl implements Comparable<IndividuImpl>, Individu {
+/**
+ * Implementation de l'interface {@link Individu}.
+ * @author Argragas
+ *
+ */
+public class IndividuImpl implements Individu, Comparable<IndividuImpl> {
 
     private final Genome genome;
     private int          score;
@@ -12,10 +17,6 @@ public class IndividuImpl implements Comparable<IndividuImpl>, Individu {
         this.score = 0;
     }
 
-    /* (non-Javadoc)
-	 * @see model.Individu#mettreAjourScore(java.lang.String)
-	 */
-    @Override
 	public void mettreAjourScore(String objectif) {
         score = 0;
         for (int indice = 0; indice < objectif.length(); indice++) {
@@ -23,10 +24,6 @@ public class IndividuImpl implements Comparable<IndividuImpl>, Individu {
         }
     }
 
-    /* (non-Javadoc)
-	 * @see model.Individu#transformerEnEnfant(model.Genome, model.Genome)
-	 */
-    @Override
 	public void transformerEnEnfant(Genome genome1, Genome genome2) {
         int pivot = ThreadLocalRandom.current().nextInt(0, genome.recupererTailleGenome());
         
@@ -38,10 +35,6 @@ public class IndividuImpl implements Comparable<IndividuImpl>, Individu {
         }
     }
 
-    /* (non-Javadoc)
-	 * @see model.Individu#muter()
-	 */
-    @Override
 	public void muter() {
         int indice = ThreadLocalRandom.current().nextInt(0, genome.recupererTailleGenome());
         int ecart = ThreadLocalRandom.current().nextInt(1, 7);
@@ -52,26 +45,14 @@ public class IndividuImpl implements Comparable<IndividuImpl>, Individu {
         }
     }
 
-    /* (non-Javadoc)
-	 * @see model.Individu#recupererGenome()
-	 */
-    @Override
 	public Genome recupererGenome() {
         return genome;
     }
 
-    /* (non-Javadoc)
-	 * @see model.Individu#recupererScore()
-	 */
-    @Override
 	public int recupererScore() {
         return score;
     }
 
-    /* (non-Javadoc)
-	 * @see model.Individu#compareTo(model.IndividuImpl)
-	 */
-    @Override
     public int compareTo(IndividuImpl autreIndividu) {
         return (this.score - autreIndividu.score);
     }
